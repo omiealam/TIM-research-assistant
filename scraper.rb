@@ -47,7 +47,7 @@ def scraper(url, year, month, message_id)
   if browser.pre.exists?
     email_info.select! {|v| !browser.pre.inner_text.include?(v)} # check if browser pre even exists
   end
-  clean_text = sanitise(email_info).each {|v| puts v }
+  clean_text = sanitise(email_info)
 
   File.write("TIM/#{year}-#{month}-#{message_id}.txt", clean_text.join("\n"), mode: "a")
 end

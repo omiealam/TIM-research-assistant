@@ -49,9 +49,7 @@ def scraper(url, year, month, message_id)
   end
   clean_text = sanitise(email_info).each {|v| puts v }
 
-  File.open("TIM/#{year}-#{month}-#{message_id}.txt", "w+") do |f|
-    f.puts(clean_text)
-  end
+  File.write("TIM/#{year}-#{month}-#{message_id}.txt", clean_text.join("\n"), mode: "a")
 end
 
 for year in YEARS

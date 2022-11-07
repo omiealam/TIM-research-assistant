@@ -1,8 +1,11 @@
 class TextSanitiser
         attr_accessor :banned_starting_strings # Drop strings that start with these strings
         attr_accessor :banned_ending_strings # Drop strings that end with these strings
-        attr_accessor :split_newline? # True to split strings based on newline character
-        attr_accessor :drop_empty? # True to drop empty strings (strings that are just spaces)
+        attr_accessor :split_newline # True to split strings based on newline character
+        attr_accessor :drop_empty # True to drop empty strings (strings that are just spaces)
+
+        alias_method :split_newline?, :split_newline
+        alias_method :drop_empty?, :drop_empty
 
         def initialize(banned_starting_strings = [], banned_ending_strings = [], split_newline = true, drop_empty = true)
           @banned_starting_strings = banned_starting_strings
@@ -28,10 +31,10 @@ class TextSanitiser
         end
 
         def drop_banned_starting_strings(string_array)
-          return string_array.select {|v| !banned_starting_strings.include?(v.split.first) }
+          return string_array.select {|v| !v.start_with?(*banned_starting_strings) }
         end
 
         def drop_banned_ending_strings(string_array)
-          return string_array.select {|v| !banned_ending_strings.include?(v.split.last) }
+          return string_array.select {|v| !v.end_with?(*banned_ending_strings) }
         end
 end

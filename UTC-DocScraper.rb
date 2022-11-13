@@ -72,8 +72,12 @@ def scrape_year(year)
       next if !curr_el.link.exists?
 
       curr_el_extension = get_element_extension(curr_el)
-      save_pdf(curr_el, year) if curr_el_extension == 'pdf'
-      save_other(curr_el, year) if (%w(txt htm html)).include?(curr_el_extension)
+      begin
+        save_pdf(curr_el, year) if curr_el_extension == 'pdf'
+        save_other(curr_el, year) if (%w(txt htm html)).include?(curr_el_extension)
+      rescue OpenURI::HTTPError => error
+        puts curr_el.innertext
+      end
     end
 end
 

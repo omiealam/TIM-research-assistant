@@ -56,10 +56,14 @@ def get_table_year(year)
 end
 
 def save_pdf(el, year)
-  File.open("/Users/omar/TIM/UTC-doc-registry/#{year}/#{el.innertext}.pdf", "wb") {|file| file.write URI.open(el.link.href).read }
+  File.open("/Users/omar/TIM/UTC-doc-registry/#{year}/#{el.innertext}.pdf", "wb") {|f| f.write URI.open(el.link.href).read }
 end
 
-
+def save_other(el, year)
+  extension = get_element_extension(el)
+  #el.click
+  File.open("/Users/omar/TIM/UTC-doc-registry/#{year}/#{el.innertext}.#{extension}", "wb") {|f| f.write URI.open(el.link.href).read }
+end
 
 def scrape_year(year)
     table = get_table_year(year)
@@ -69,8 +73,12 @@ def scrape_year(year)
 
       curr_el_extension = get_element_extension(curr_el)
       save_pdf(curr_el, year) if curr_el_extension == 'pdf'
-      save_other(curr_el, year) if (%w(txt htm html)).includes?
+      save_other(curr_el, year) if (%w(txt htm html)).include?(curr_el_extension)
     end
+end
+
+def scrape_all
+  YEARS.each {|year| scrape_year(year) }
 end
 
 # special cases: L2/01-071, L2/01-483, L2/01-440

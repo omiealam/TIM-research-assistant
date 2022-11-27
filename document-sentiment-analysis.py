@@ -19,10 +19,8 @@ def path(year):
     return f'{directory}{year}/L2'
 
 for year in years:
-    print(path(year))
-
-# for filename in os.listdir(directory):
-#     f = os.path.join(directory, filename)
-#     # checking if it is a file
-#     if os.path.isfile(f):
-#         print(f)
+    curr_directory = path(year)
+    for filename in os.listdir(curr_directory):
+        f = os.path.join(curr_directory, filename)
+        if os.path.isfile(f):
+            print(filename)

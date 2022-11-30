@@ -6,6 +6,10 @@ RESOLVED_ISSUE_RANGE = (177..459).to_a
 OPEN_ISSUE_RANGE = (460..466).to_a
 BROWSER = Watir::Browser.new(:chrome, headless: true)
 
-def url_generator(issue_number)
+def pri_url_generator(issue_number)
   return "https://www.unicode.org/review/pri#{issue_number}/"
+end
+
+def feedback_url_generator(issue_number)
+   return "https://www.unicode.org/review/pri#{issue_number}/feedback.html"
 end

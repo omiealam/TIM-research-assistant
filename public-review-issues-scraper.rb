@@ -42,3 +42,7 @@ def scraper(issue_number)
     File.write("TIM/pri/#{issue_number}-accumulated-feedback.txt", feedback_page_text, mode: "a")
   end
 end
+
+def main
+  RESOLVED_ISSUE_RANGE.each {|issue_number| puts issue_number; scraper(issue_number)}
+end

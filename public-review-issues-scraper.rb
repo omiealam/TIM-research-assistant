@@ -17,6 +17,11 @@ end
 
 def pri_page_scraper(issue_number)
   BROWSER.goto(pri_url_generator(issue_number))
-  # puts BROWSER.trs[3].inner_text.split("\n").first
-  BROWSER.ps.each {|p| puts p.inner_text if !p.contains?(For information about how to discuss this Public Review Issue and how to supply formal feedback")
+  puts BROWSER.trs[3].inner_text.split("\n").first
+  BROWSER.ps.each {|p| puts p.inner_text if !p.inner_text.include?("For information about how to discuss this Public Review Issue and how to supply formal feedback")}
+end
+
+def feedback_page_scraper(issue_number)
+  BROWSER.goto(feedback_url_generator(issue_number))
+  puts BROWSER.body.inner_text
 end

@@ -10,6 +10,8 @@ years = range(2001, 2022)
 directory = "/Users/omar/TIM/UTC-doc-registry/"
 tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
 model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
+key_words = ['ESC', 'emoji subcommittee', 'emoji gender', 'skintone', 'multi-person. multi-skintone', 'fitzpatrick scale', 'gender', 'gendered', 'male', 'female', 'gender inclusive', 'male/female', 'UTR #51', 'gender neutral', 'feminine', 'masculine', 'gender inequality', 'inclusive gender', 'gender-related', 'binary gender', 'neutral gender', 'TR-51', 'racial', 'racial representation,' 'racial homogeniety', 'light-skin', 'people of color', 'people of colour', 'racial composition', 'ethnic', 'ethnic background', 'racial stereotypes', 'golliwog', 'western', 'race', 'skin color', 'racial differences']
+key_people = ['Jennifer Daniels', 'Mark Davies', 'Charlotte Buff', 'Michael Kieran', 'Alex King', 'Scott Hill', 'Paul Roberts', 'Jeremy Burge']
 
 def sentiment_score(text):
     tokens = tokenizer.encode(text, return_tensors='pt')

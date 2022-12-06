@@ -25,3 +25,8 @@ def year_iterate(year):
         f = os.path.join(curr_directory, filename)
         if os.path.isfile(f):
             print(f'{filename} {sentiment_score(filename)}')
+
+def main():
+
+if __name__ == '__main__':
+    main()

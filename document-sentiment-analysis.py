@@ -44,6 +44,21 @@ def get_pdf_contents(document_path):
             contents.append(page.extract_text())
     return " ".join(contents)
 
+def word_finder(document_path):
+    contents = get_doc_contents(document_path)
+    for search_word in key_words:
+        if search_word in contents:
+            print (f'word "{search_word}" found in {document_path}')
+
+# Testing
+def year_search_iterate(year):
+    curr_directory = path(year)
+    for filename in os.listdir(curr_directory):
+        f = os.path.join(curr_directory, filename)
+        if os.path.isfile(f):
+            word_finder(f)
+#Testing
+
 def main():
     for year in years:
         year_search_iterate(year)

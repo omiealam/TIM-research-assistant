@@ -26,7 +26,7 @@ def year_iterate(year):
     curr_directory = path(year)
     for filename in os.listdir(curr_directory):
         f = os.path.join(curr_directory, filename)
-        if os.path.isfile(f):
+        if os.path.isfile(f) and word_finder(f):
             print(f'{filename} {sentiment_score(filename)}')
 
 def get_doc_contents(document_path):
@@ -48,16 +48,7 @@ def word_finder(document_path):
     contents = get_doc_contents(document_path)
     for search_word in key_words:
         if search_word in contents:
-            print (f'word "{search_word}" found in {document_path}')
-
-# Testing
-def year_search_iterate(year):
-    curr_directory = path(year)
-    for filename in os.listdir(curr_directory):
-        f = os.path.join(curr_directory, filename)
-        if os.path.isfile(f):
-            word_finder(f)
-#Testing
+            return True
 
 def main():
     for year in years:

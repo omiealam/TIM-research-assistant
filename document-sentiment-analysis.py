@@ -4,6 +4,7 @@ import re
 import numpy as np
 import pandas as pd
 import os
+import pdfplumber
 
 
 years = range(2001, 2022)
@@ -28,7 +29,24 @@ def year_iterate(year):
         if os.path.isfile(f):
             print(f'{filename} {sentiment_score(filename)}')
 
+def get_doc_contents(document_path):
+    if document_path.endswith('.pdf'):
+        contents = get_pdf_contents(document_path)
+    else:
+        with open(document_path, errors='ignore') as file:
+            contents = file.read()
+    return contents
+
+def get_pdf_contents(document_path):
+    contents = []
+    with pdfplumber.open(document_path) as pdf:
+        for page in pdf.pages:
+            contents.append(page.extract_text())
+    return " ".join(contents)
+
 def main():
+    for year in years:
+        year_search_iterate(year)
 
 if __name__ == '__main__':
     main()

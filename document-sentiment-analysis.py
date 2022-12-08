@@ -27,7 +27,7 @@ def year_iterate(year):
     for filename in os.listdir(curr_directory):
         f = os.path.join(curr_directory, filename)
         if os.path.isfile(f) and word_finder(f):
-            print(f'{filename} {sentiment_score(filename)}') if strong_sentiment(sentiment_score(filename)) else 0
+            print(f'{filename}, {sentiment_score(filename)}') if strong_sentiment(sentiment_score(filename)) else 0
 
 def get_doc_contents(document_path):
     if document_path.endswith('.pdf'):

@@ -1,3 +1,6 @@
+# TODO: scrape PRIs before 176
+# TODO: have not scraped PRIs 183, 187, 259, 326, 349, 351, 354, 418, 456 due to error on following line
+# "timed out after 30 seconds, waiting for #<Watir::TableRow: located: false; {:tag_name=>"tr", :index=>3}>""
 require 'watir'
 require 'open-uri'
 require 'set'

@@ -38,10 +38,13 @@ def get_doc_contents(document_path):
     return contents
 
 def get_pdf_contents(document_path):
-    contents = []
-    with pdfplumber.open(document_path) as pdf:
-        for page in pdf.pages:
-            contents.append(page.extract_text())
+    try:
+        contents = []
+        with pdfplumber.open(document_path) as pdf:
+            for page in pdf.pages:
+                contents.append(page.extract_text())
+    except Exception:
+        pass
     return " ".join(contents)
 
 def word_finder(document_path):
